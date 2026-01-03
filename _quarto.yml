@@ -1,0 +1,22 @@
+project:
+  type: website
+
+website:
+  title: "2025_DAIE_ICA_1_jc"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+editor: visual
+
+#https://github.com/DKIT-CA2/2025_DAIE_ICA_1_jc.git
