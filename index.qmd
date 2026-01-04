@@ -109,6 +109,42 @@ DT::datatable(
   options = list(pageLength = 25)
 )
 
+```
 
+<br> <br> <br> <br>
 
+```{r}
+#| echo: false
+#3. List the top three crew members based on the number of successful productions they’ve
+#been involved in. Display the results
+
+Question_03 <- "
+SELECT
+  cm.CrewID,  -- get crew ID
+  cm.Name,     -- crew member name
+  cm.Role,    -- their role in the crew
+  COUNT(DISTINCT p.ProductionID) AS CompletedProductions  -- how many completed productions they worked in
+FROM CrewMembers cm
+JOIN ProductionCrew pc
+  ON pc.CrewID = cm.CrewID  -- linking crew members to productions
+JOIN Productions p
+  ON p.ProductionID = pc.ProductionID
+WHERE p.Status = 'Completed'  -- only include finished productions
+GROUP BY cm.CrewID, cm.Name, cm.Role     -- group
+ORDER BY CompletedProductions DESC, cm.Name ASC  -- sorts highest number first, then alphabetical 
+LIMIT 3;
+"
+
+Question_03_Result <- dbGetQuery(con, Question_03)
+
+#DT::datatable(Question_03_Result, options = list(pageLength = 8), rownames = FALSE)
+DT::datatable(
+  Question_03_Result,
+  caption = htmltools::tags$caption(
+    style = "caption-side: top; font-size: 1.5em; font-weight: bold; text-align: left;",
+    "Question_03: List the top three crew members based on the number of successful productions."
+  ),
+  rownames = FALSE,
+  options = list(pageLength = 25)
+)
 ```
