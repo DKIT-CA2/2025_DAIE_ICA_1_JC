@@ -50,7 +50,7 @@ library(DT)
 DT::datatable(
   Question_01_Result,
   caption = htmltools::tags$caption(
-    style = "caption-side: top; font-size: 1.5em; font-weight: bold; text-align: left;",
+    style = "caption-side: top; font-size: 1.5em; font-weight: bold;color: black; text-align: left;",
     "Question_01: Total Budget and Project Count by Country"
   ),
   rownames = FALSE,
@@ -102,7 +102,7 @@ library(DT)
 DT::datatable(
   Question_02_Result,
   caption = htmltools::tags$caption(
-    style = "caption-side: top; font-size: 1.5em; font-weight: bold; text-align: left;",
+    style = "caption-side: top; font-size: 1.5em; font-weight: bold;color: black; text-align: left;",
     "Question 02: Average Development Time by Number of Assets Used"
   ),
   rownames = FALSE,
@@ -141,10 +141,66 @@ Question_03_Result <- dbGetQuery(con, Question_03)
 DT::datatable(
   Question_03_Result,
   caption = htmltools::tags$caption(
-    style = "caption-side: top; font-size: 1.5em; font-weight: bold; text-align: left;",
+    style = "caption-side: top; font-size: 1.5em; font-weight: bold;color: black; text-align: left;",
     "Question_03: List the top three crew members based on the number of successful productions."
   ),
   rownames = FALSE,
   options = list(pageLength = 25)
 )
+```
+<div style="margin-top: 80px;"></div>
+<h2>Part two SQL Concepts LIKE and OR</h2>
+
+``` sql
+SELECT
+  ProductionID,
+  Title, 
+  Genre, 
+  Status, 
+  Budget
+FROM Productions
+WHERE Title LIKE '%Virtual%'
+   OR Title LIKE '%Cam%'
+   OR Genre LIKE '%Sci%';
+```
+```{r}
+
+```
+<br><br>
+```{r}
+#| echo: false
+library(DBI)
+library(DT)
+
+Concepts_01 <- "
+SELECT
+  ProductionID,
+  Title,
+  Genre,
+  Status,
+  Budget
+FROM Productions
+WHERE Title LIKE '%Virtual%'
+   OR Title LIKE '%Cam%'
+   OR Genre LIKE '%Sci%';
+"
+
+resultConcept_01 <- dbGetQuery(con, Concepts_01) #run sql query using db connection, save result as a data frame
+
+#DT::datatable(
+#  result,
+#  rownames = FALSE,
+#  options = list(pageLength = 10, lengthChange = FALSE)
+#) version below is better,displays results in an interactive table
+DT::datatable(
+  resultConcept_01,
+  caption = htmltools::tags$caption(
+    style = "caption-side: top; font-size: 1.5em; font-weight: bold;color: black; text-align: left;",
+    "Part two No:1 SQL Concepts LIKE and OR output."
+  ),
+  rownames = FALSE,
+  options = list(pageLength = 12)
+)
+
+
 ```
