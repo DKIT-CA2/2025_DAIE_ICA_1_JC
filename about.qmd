@@ -1,9 +1,33 @@
 ---
-title: "About"
+title: "Exploaration"
 ---
 
-About this site
 
 ```{r}
-1 + 1
+
 ```
+<div style="margin-top: 80px;"></div>
+
+<div style="margin-top: 80px;"></div>
+
+<h2 style="
+  font-size: 2rem;
+  border-bottom: 3px solid #3b82f6;
+  padding-bottom: 0.3em;
+  margin-bottom: 1em;
+">
+Technology Exploration
+</h2>
+
+
+<div style="
+  background-color: #f9fafb;
+  border-left: 5px solid #3b82f6;
+  padding: 1.2em 1.5em;
+  margin: 2em 0;
+  border-radius: 6px;
+">
+  <p>
+For this part of the project, I used a number of R packages that helped make working with the database and presenting the results a bit easier. The DBI and RSQLite packages were used to connect the Quarto website directly to the SQLite database, which meant I could run my SQL queries from within R and display the results straight away. This kept everything in one place and made the process easier to follow when re-running the analysis. To display the outputs from the queries, I used the DT package to create interactive tables. This package works well for larger result sets, as it allows for pagination, sorting, and searching, which make  tables easier to read . I also made some use of the tidyverse to clean up and format the data before displaying it, such as adjusting column names and ensuring the values were presented consistently. Overall, these tools helped improve how the results were shown and made the website more user-friendly.
+  </p>
+</div>
